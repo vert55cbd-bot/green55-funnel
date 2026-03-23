@@ -446,11 +446,13 @@
       document.getElementById('resultsContent').style.display = 'block';
       document.getElementById('displayPrenom').textContent = prenom;
 
-      // Macros — support various response structures
-      var calories = results.calories || (results.macros && results.macros.calories) || 0;
-      var proteines = results.proteines || (results.macros && results.macros.proteines) || 0;
-      var glucides = results.glucides || (results.macros && results.macros.glucides) || 0;
-      var lipides = results.lipides || (results.macros && results.macros.lipides) || 0;
+      // Macros — support the actual API response structure
+      var c = results.calculs || {};
+      var m = (c.macros) || {};
+      var calories = c.calories_cibles || results.calories || 0;
+      var proteines = m.proteines_g || results.proteines || 0;
+      var glucides = m.glucides_g || results.glucides || 0;
+      var lipides = m.lipides_g || results.lipides || 0;
 
       document.getElementById('calValue').textContent = calories;
       document.getElementById('protValue').textContent = proteines;
@@ -464,7 +466,8 @@
       document.getElementById('lipBar').style.width = Math.round((lipides / maxMacro) * 100) + '%';
 
       // Score
-      var score = results.score || (results.analyse_ia && results.analyse_ia.score) || 0;
+      var scoring = results.scoring || {};
+      var score = scoring.score || results.score || 0;
       if (score) {
         document.getElementById('scoreSection').style.display = 'block';
         document.getElementById('scoreValue').textContent = score;
