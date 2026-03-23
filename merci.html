@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GREEN 55 &mdash; Tes R&eacute;sultats</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 20px;
+      padding-bottom: 60px;
+    }
+
+    /* NAV */
+    nav {
+      padding: 20px 0;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 32px;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+    .logo span { color: #00d4aa; }
+
+    /* HEADER */
+    .results-header {
+      text-align: center;
+      margin-bottom: 36px;
+    }
+    .check-icon {
+      width: 64px;
+      height: 64px;
+      background: linear-gradient(135deg, #00d4aa, #00a88a);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.8rem;
+      margin: 0 auto 20px;
+      box-shadow: 0 0 40px rgba(0,212,170,0.3);
+    }
+    .results-header h1 {
+      font-size: 1.6rem;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+    .results-header h1 em {
+      font-style: normal;
+      color: #00d4aa;
+    }
+    .results-header p {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem;
+    }
+
+    /* SCORE */
+    .score-section {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .score-circle {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #00d4aa;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      box-shadow: 0 0 30px rgba(0,212,170,0.15);
+    }
+    .score-value {
+      font-size: 2.4rem;
+      font-weight: 900;
+      color: #00d4aa;
+      line-height: 1;
+    }
+    .score-label {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+    .score-subtitle {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+    }
+
+    /* MACROS */
+    .macros-section {
+      margin-bottom: 32px;
+    }
+    .section-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .section-title .icon {
+      font-size: 1.2rem;
+    }
+    .macros-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .macro-card-main {
+      background: linear-gradient(135deg, rgba(0,212,170,0.15), rgba(0,212,170,0.05));
+      border: 1.5px solid rgba(0,212,170,0.3);
+      border-radius: 16px;
+      padding: 24px;
+      text-align: center;
+    }
+    .macro-card-main .macro-value {
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: #00d4aa;
+      line-height: 1;
+    }
+    .macro-card-main .macro-unit {
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: rgba(0,212,170,0.7);
+    }
+    .macro-card-main .macro-name {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+    .macros-sub {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-top: 12px;
+    }
+    .macro-card {
+      background: #111118;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 16px 8px;
+      text-align: center;
+    }
+    .macro-card .macro-value {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1;
+    }
+    .macro-card .macro-unit {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .macro-card .macro-name {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 6px;
+    }
+    .macro-card .macro-bar {
+      width: 100%;
+      height: 3px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 3px;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+    .macro-card .macro-bar-fill {
+      height: 100%;
+      border-radius: 3px;
+    }
+    .bar-prot { background: #00d4aa; }
+    .bar-gluc { background: #4dabf7; }
+    .bar-lip { background: #ffd43b; }
+
+    /* COACH ANALYSIS */
+    .coach-section {
+      margin-bottom: 32px;
+    }
+    .coach-card {
+      background: #111118;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 24px;
+    }
+    .coach-badge {
+      display: inline-block;
+      background: rgba(0,212,170,0.1);
+      color: #00d4aa;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 50px;
+      margin-bottom: 16px;
+      letter-spacing: 0.5px;
+    }
+    .coach-message {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.7;
+      white-space: pre-wrap;
+    }
+
+    /* FREE TEASER */
+    .teaser-section {
+      margin-bottom: 36px;
+    }
+    .teaser-card {
+      background: linear-gradient(135deg, rgba(0,212,170,0.08), rgba(0,212,170,0.02));
+      border: 1px dashed rgba(0,212,170,0.3);
+      border-radius: 16px;
+      padding: 20px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .teaser-icon {
+      font-size: 2rem;
+      flex-shrink: 0;
+    }
+    .teaser-card h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .teaser-card p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+      line-height: 1.4;
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      padding: 40px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .cta-section h2 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .cta-section p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .cta-btn {
+      display: inline-block;
+      background: #00d4aa;
+      color: #0a0a0a;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 16px 36px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(0,212,170,0.3);
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(0,212,170,0.5);
+    }
+    .cta-price {
+      display: block;
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+    }
+    .cta-price s {
+      color: rgba(255,255,255,0.25);
+    }
+
+    /* NO DATA */
+    .no-data {
+      text-align: center;
+      padding: 60px 20px;
+    }
+    .no-data h2 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .no-data p {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 24px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    footer p {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <nav>
+      <div class="logo">GREEN <span>55</span></div>
+    </nav>
+
+    <!-- NO DATA FALLBACK -->
+    <div id="noData" class="no-data" style="display:none;">
+      <h2>Aucun r&eacute;sultat trouv&eacute;</h2>
+      <p>Il semble que tu n'as pas encore rempli le questionnaire. Commence par cr&eacute;er ton programme.</p>
+      <a href="survey.html" class="cta-btn">Remplir le Questionnaire &rarr;</a>
+    </div>
+
+    <!-- RESULTS CONTENT -->
+    <div id="resultsContent" style="display:none;">
+
+      <!-- HEADER -->
+      <div class="results-header">
+        <div class="check-icon">&#10003;</div>
+        <h1>Bravo <em id="displayPrenom"></em> !</h1>
+        <p>Ton programme personnalis&eacute; a &eacute;t&eacute; g&eacute;n&eacute;r&eacute; avec succ&egrave;s.</p>
+      </div>
+
+      <!-- SCORE -->
+      <div class="score-section" id="scoreSection" style="display:none;">
+        <div class="score-circle">
+          <div class="score-value" id="scoreValue">-</div>
+          <div class="score-label">Score</div>
+        </div>
+        <p class="score-subtitle">Score de forme physique</p>
+      </div>
+
+      <!-- MACROS -->
+      <div class="macros-section">
+        <div class="section-title"><span class="icon">&#127860;</span> Tes Macros Journali&egrave;res</div>
+        <div class="macros-grid">
+          <div class="macro-card-main">
+            <div class="macro-value"><span id="calValue">-</span> <span class="macro-unit">kcal</span></div>
+            <div class="macro-name">Calories / jour</div>
+          </div>
+          <div class="macros-sub">
+            <div class="macro-card">
+              <div class="macro-value" id="protValue">-</div>
+              <div class="macro-unit">g</div>
+              <div class="macro-name">Prot&eacute;ines</div>
+              <div class="macro-bar"><div class="macro-bar-fill bar-prot" id="protBar" style="width:0%"></div></div>
+            </div>
+            <div class="macro-card">
+              <div class="macro-value" id="glucValue">-</div>
+              <div class="macro-unit">g</div>
+              <div class="macro-name">Glucides</div>
+              <div class="macro-bar"><div class="macro-bar-fill bar-gluc" id="glucBar" style="width:0%"></div></div>
+            </div>
+            <div class="macro-card">
+              <div class="macro-value" id="lipValue">-</div>
+              <div class="macro-unit">g</div>
+              <div class="macro-name">Lipides</div>
+              <div class="macro-bar"><div class="macro-bar-fill bar-lip" id="lipBar" style="width:0%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- COACH ANALYSIS -->
+      <div class="coach-section" id="coachSection" style="display:none;">
+        <div class="section-title"><span class="icon">&#129504;</span> Analyse du Coach IA</div>
+        <div class="coach-card">
+          <div class="coach-badge">GREEN 55 IA</div>
+          <div class="coach-message" id="coachMessage"></div>
+        </div>
+      </div>
+
+      <!-- TEASER -->
+      <div class="teaser-section">
+        <div class="teaser-card">
+          <div class="teaser-icon">&#128231;</div>
+          <div>
+            <h3>Aper&ccedil;u gratuit 7 jours</h3>
+            <p>Tu vas recevoir un aper&ccedil;u de ton programme sur 7 jours directement par email. V&eacute;rifie ta bo&icirc;te de r&eacute;ception.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-section">
+        <h2>Passe au niveau sup&eacute;rieur</h2>
+        <p>D&eacute;bloque ton programme complet 30 jours avec nutrition, training et suivi personnalis&eacute;.</p>
+        <a href="offre.html" class="cta-btn">Obtenir ton Programme Complet 30 Jours &mdash; 99&euro; &rarr;</a>
+        <span class="cta-price"><s>199&euro;</s> &rarr; 99&euro; (offre de lancement)</span>
+      </div>
+
+    </div>
+
+    <footer>
+      <p>&copy; 2026 GREEN 55 &mdash; Tous droits r&eacute;serv&eacute;s.</p>
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      var prenom = sessionStorage.getItem('green55_prenom');
+      var resultsRaw = sessionStorage.getItem('green55_results');
+
+      if (!prenom || !resultsRaw) {
+        document.getElementById('noData').style.display = 'block';
+        return;
+      }
+
+      var results;
+      try {
+        results = JSON.parse(resultsRaw);
+      } catch(e) {
+        document.getElementById('noData').style.display = 'block';
+        return;
+      }
+
+      document.getElementById('resultsContent').style.display = 'block';
+      document.getElementById('displayPrenom').textContent = prenom;
+
+      // Macros — support various response structures
+      var calories = results.calories || (results.macros && results.macros.calories) || 0;
+      var proteines = results.proteines || (results.macros && results.macros.proteines) || 0;
+      var glucides = results.glucides || (results.macros && results.macros.glucides) || 0;
+      var lipides = results.lipides || (results.macros && results.macros.lipides) || 0;
+
+      document.getElementById('calValue').textContent = calories;
+      document.getElementById('protValue').textContent = proteines;
+      document.getElementById('glucValue').textContent = glucides;
+      document.getElementById('lipValue').textContent = lipides;
+
+      // Macro bars (relative to max)
+      var maxMacro = Math.max(proteines, glucides, lipides, 1);
+      document.getElementById('protBar').style.width = Math.round((proteines / maxMacro) * 100) + '%';
+      document.getElementById('glucBar').style.width = Math.round((glucides / maxMacro) * 100) + '%';
+      document.getElementById('lipBar').style.width = Math.round((lipides / maxMacro) * 100) + '%';
+
+      // Score
+      var score = results.score || (results.analyse_ia && results.analyse_ia.score) || 0;
+      if (score) {
+        document.getElementById('scoreSection').style.display = 'block';
+        document.getElementById('scoreValue').textContent = score;
+      }
+
+      // Coach message
+      var message = '';
+      if (results.analyse_ia && results.analyse_ia.message_perso) {
+        message = results.analyse_ia.message_perso;
+      } else if (results.message_perso) {
+        message = results.message_perso;
+      } else if (results.analyse_ia && typeof results.analyse_ia === 'string') {
+        message = results.analyse_ia;
+      }
+
+      if (message) {
+        document.getElementById('coachSection').style.display = 'block';
+        document.getElementById('coachMessage').textContent = message;
+      }
+    })();
+  </script>
+
+</body>
+</html>

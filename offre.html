@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GREEN 55 &mdash; Programme 30 Jours</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 20px;
+      padding-bottom: 60px;
+    }
+
+    /* NAV */
+    nav {
+      padding: 20px 0;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 8px;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+    .logo span { color: #00d4aa; }
+
+    /* URGENCY BAR */
+    .urgency-bar {
+      background: linear-gradient(90deg, rgba(0,212,170,0.15), rgba(0,212,170,0.05));
+      border: 1px solid rgba(0,212,170,0.2);
+      border-radius: 12px;
+      padding: 14px 20px;
+      text-align: center;
+      margin: 20px 0 32px;
+    }
+    .urgency-bar .timer-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+    .urgency-bar .timer {
+      font-size: 1.6rem;
+      font-weight: 900;
+      color: #00d4aa;
+      font-variant-numeric: tabular-nums;
+    }
+    .urgency-bar .timer-note {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 4px;
+    }
+
+    /* HERO */
+    .offer-hero {
+      text-align: center;
+      padding: 20px 0 36px;
+    }
+    .offer-hero .badge {
+      display: inline-block;
+      background: rgba(0,212,170,0.1);
+      color: #00d4aa;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border: 1px solid rgba(0,212,170,0.2);
+    }
+    .offer-hero h1 {
+      font-size: 1.8rem;
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 16px;
+    }
+    .offer-hero h1 em {
+      font-style: normal;
+      color: #00d4aa;
+    }
+    .offer-hero p {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* WHAT'S INCLUDED */
+    .included {
+      margin-bottom: 40px;
+    }
+    .section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+    .included-list {
+      list-style: none;
+    }
+    .included-list li {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 16px 20px;
+      background: #111118;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      transition: border-color 0.3s ease;
+    }
+    .included-list li:hover {
+      border-color: rgba(0,212,170,0.2);
+    }
+    .included-check {
+      width: 28px;
+      height: 28px;
+      background: rgba(0,212,170,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: #00d4aa;
+      font-size: 0.85rem;
+      font-weight: 700;
+    }
+    .included-list li h3 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      margin-bottom: 3px;
+    }
+    .included-list li p {
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.45);
+      line-height: 1.4;
+    }
+
+    /* PRICING */
+    .pricing {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+    .pricing-card {
+      background: linear-gradient(135deg, rgba(0,212,170,0.1), rgba(0,212,170,0.02));
+      border: 2px solid rgba(0,212,170,0.3);
+      border-radius: 20px;
+      padding: 36px 24px;
+    }
+    .pricing-old {
+      font-size: 1.3rem;
+      color: rgba(255,255,255,0.3);
+      text-decoration: line-through;
+      margin-bottom: 4px;
+    }
+    .pricing-amount {
+      font-size: 3.5rem;
+      font-weight: 900;
+      color: #00d4aa;
+      line-height: 1;
+    }
+    .pricing-amount sup {
+      font-size: 1.5rem;
+      vertical-align: super;
+    }
+    .pricing-period {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 4px;
+      margin-bottom: 20px;
+    }
+    .pricing-savings {
+      display: inline-block;
+      background: rgba(0,212,170,0.15);
+      color: #00d4aa;
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 6px 16px;
+      border-radius: 50px;
+      margin-bottom: 24px;
+    }
+    .cta-btn {
+      display: inline-block;
+      width: 100%;
+      background: #00d4aa;
+      color: #0a0a0a;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 18px 36px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(0,212,170,0.3);
+      text-align: center;
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(0,212,170,0.5);
+    }
+    .cta-secure {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      margin-top: 14px;
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* GUARANTEE */
+    .guarantee {
+      margin-bottom: 40px;
+    }
+    .guarantee-card {
+      background: #111118;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 28px 24px;
+      text-align: center;
+    }
+    .guarantee-icon {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+    }
+    .guarantee-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .guarantee-card p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    /* TESTIMONIALS */
+    .testimonials {
+      margin-bottom: 40px;
+    }
+    .testimonial {
+      background: #111118;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 12px;
+    }
+    .testimonial-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    .testimonial-author {
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .testimonial-stars {
+      color: #00d4aa;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+    }
+    .testimonial p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.6;
+      font-style: italic;
+    }
+    .testimonial-result {
+      margin-top: 10px;
+      display: inline-block;
+      background: rgba(0,212,170,0.1);
+      color: #00d4aa;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+    }
+
+    /* FAQ */
+    .faq {
+      margin-bottom: 40px;
+    }
+    .faq-item {
+      background: #111118;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      margin-bottom: 10px;
+      overflow: hidden;
+    }
+    .faq-question {
+      padding: 18px 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: color 0.3s ease;
+    }
+    .faq-question:hover {
+      color: #00d4aa;
+    }
+    .faq-arrow {
+      font-size: 0.8rem;
+      transition: transform 0.3s ease;
+      color: #00d4aa;
+    }
+    .faq-item.open .faq-arrow {
+      transform: rotate(180deg);
+    }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease, padding 0.4s ease;
+    }
+    .faq-item.open .faq-answer {
+      max-height: 300px;
+      padding: 0 20px 18px;
+    }
+    .faq-answer p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    /* FINAL CTA */
+    .final-cta {
+      text-align: center;
+      padding: 40px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .final-cta h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+    .final-cta p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      margin-bottom: 24px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 24px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    footer p {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+    }
+    footer a {
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+    }
+    footer a:hover {
+      color: #00d4aa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <nav>
+      <div class="logo">GREEN <span>55</span></div>
+    </nav>
+
+    <!-- URGENCY TIMER -->
+    <div class="urgency-bar">
+      <div class="timer-label">Offre de lancement &mdash; expire dans</div>
+      <div class="timer" id="countdown">23:59:59</div>
+      <div class="timer-note">Places limit&eacute;es &agrave; ce tarif</div>
+    </div>
+
+    <!-- HERO -->
+    <section class="offer-hero">
+      <div class="badge">Offre de lancement</div>
+      <h1>Ton Programme Complet <em>30 Jours</em></h1>
+      <p>Nutrition + Training + Suivi personnalis&eacute;, le tout g&eacute;n&eacute;r&eacute; par notre IA et valid&eacute; par des coachs certifi&eacute;s.</p>
+    </section>
+
+    <!-- WHAT'S INCLUDED -->
+    <section class="included">
+      <h2 class="section-title">Ce qui est inclus</h2>
+      <ul class="included-list">
+        <li>
+          <div class="included-check">&#10003;</div>
+          <div>
+            <h3>Programme Training 30 Jours</h3>
+            <p>S&eacute;ances d&eacute;taill&eacute;es jour par jour, adapt&eacute;es &agrave; ton lieu et niveau. S&eacute;ries, reps et temps de repos inclus.</p>
+          </div>
+        </li>
+        <li>
+          <div class="included-check">&#10003;</div>
+          <div>
+            <h3>Plan Nutrition Personnalis&eacute;</h3>
+            <p>Menus complets avec recettes, liste de courses et macros calcul&eacute;es selon tes pr&eacute;f&eacute;rences alimentaires.</p>
+          </div>
+        </li>
+        <li>
+          <div class="included-check">&#10003;</div>
+          <div>
+            <h3>Suivi WhatsApp Hebdomadaire</h3>
+            <p>Un coach v&eacute;rifie ta progression chaque semaine et ajuste ton programme si n&eacute;cessaire.</p>
+          </div>
+        </li>
+        <li>
+          <div class="included-check">&#10003;</div>
+          <div>
+            <h3>Guide Compl&eacute;ments & R&eacute;cup&eacute;ration</h3>
+            <p>Recommandations personnalis&eacute;es sur les compl&eacute;ments, le sommeil et la r&eacute;cup&eacute;ration.</p>
+          </div>
+        </li>
+        <li>
+          <div class="included-check">&#10003;</div>
+          <div>
+            <h3>Acc&egrave;s Communaut&eacute; Priv&eacute;e</h3>
+            <p>Rejoins +2 400 membres motiv&eacute;s dans notre groupe priv&eacute; pour &eacute;changer et rester motiv&eacute;.</p>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <!-- PRICING -->
+    <section class="pricing">
+      <div class="pricing-card">
+        <div class="pricing-old">199&euro;</div>
+        <div class="pricing-amount">99<sup>&euro;</sup></div>
+        <div class="pricing-period">Paiement unique &mdash; acc&egrave;s &agrave; vie</div>
+        <div class="pricing-savings">-50% &mdash; &Eacute;conomise 100&euro;</div>
+        <a href="#" id="checkoutBtn" class="cta-btn">Obtenir Mon Programme 30 Jours &rarr;</a>
+        <div class="cta-secure">&#128274; Paiement s&eacute;curis&eacute; par Stripe</div>
+      </div>
+    </section>
+
+    <!-- GUARANTEE -->
+    <section class="guarantee">
+      <div class="guarantee-card">
+        <div class="guarantee-icon">&#128737;</div>
+        <h3>Garantie Satisfait ou Rembours&eacute; 30 Jours</h3>
+        <p>Suis le programme pendant 30 jours. Si tu ne vois aucun r&eacute;sultat, on te rembourse int&eacute;gralement. Aucune question pos&eacute;e.</p>
+      </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section class="testimonials">
+      <h2 class="section-title">Ils ont transform&eacute; leur physique</h2>
+
+      <div class="testimonial">
+        <div class="testimonial-top">
+          <div class="testimonial-author">Karim L. &mdash; 26 ans</div>
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        </div>
+        <p>&laquo; En 30 jours de s&egrave;che, j'ai perdu 4.2kg de gras tout en gardant ma force. Le plan nutrition &eacute;tait ultra simple &agrave; suivre. &raquo;</p>
+        <div class="testimonial-result">-4.2 kg en 30 jours</div>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-top">
+          <div class="testimonial-author">Sarah T. &mdash; 31 ans</div>
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        </div>
+        <p>&laquo; Premi&egrave;re fois que je suis un programme jusqu'au bout. Le suivi WhatsApp m'a gard&eacute;e motiv&eacute;e chaque semaine. &raquo;</p>
+        <div class="testimonial-result">Recomposition r&eacute;ussie</div>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-top">
+          <div class="testimonial-author">Thomas R. &mdash; 22 ans</div>
+          <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        </div>
+        <p>&laquo; +3kg de masse musculaire en 30 jours. Les s&eacute;ances &eacute;taient parfaitement calibr&eacute;es pour mon niveau. &raquo;</p>
+        <div class="testimonial-result">+3 kg de muscle</div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="faq">
+      <h2 class="section-title">Questions Fr&eacute;quentes</h2>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Le programme est-il adapt&eacute; aux d&eacute;butants ?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </div>
+        <div class="faq-answer">
+          <p>Oui, chaque programme est g&eacute;n&eacute;r&eacute; en fonction de ton niveau. Que tu sois d&eacute;butant ou confirm&eacute;, les exercices, les charges et la progression sont adapt&eacute;s.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Je m'entra&icirc;ne &agrave; la maison, c'est possible ?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </div>
+        <div class="faq-answer">
+          <p>Absolument. Ton programme est cr&eacute;&eacute; en fonction de ton lieu d'entra&icirc;nement. Si tu t'entra&icirc;nes &agrave; la maison, on adapte avec du poids de corps et du mat&eacute;riel minimal.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Comment fonctionne la garantie ?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </div>
+        <div class="faq-answer">
+          <p>Si apr&egrave;s 30 jours de suivi du programme tu n'es pas satisfait, contacte-nous et on te rembourse &agrave; 100%. Aucune question pos&eacute;e, aucun justificatif demand&eacute;.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>Le suivi WhatsApp, c'est quoi exactement ?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </div>
+        <div class="faq-answer">
+          <p>Chaque semaine, un coach certifi&eacute; te contacte sur WhatsApp pour v&eacute;rifier ta progression, r&eacute;pondre &agrave; tes questions et ajuster ton programme si n&eacute;cessaire.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+          <span>C'est un paiement unique ou un abonnement ?</span>
+          <span class="faq-arrow">&#9660;</span>
+        </div>
+        <div class="faq-answer">
+          <p>C'est un paiement unique de 99&euro;. Pas d'abonnement, pas de frais cach&eacute;s. Tu gardes un acc&egrave;s &agrave; vie &agrave; ton programme.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+      <h2>Ne laisse pas passer cette opportunit&eacute;</h2>
+      <p>Rejoins les 2 400+ membres qui transforment leur physique avec GREEN 55. L'offre &agrave; 99&euro; est limit&eacute;e dans le temps.</p>
+      <a href="#" id="checkoutBtn2" class="cta-btn">Commander Mon Programme &mdash; 99&euro; &rarr;</a>
+    </section>
+
+    <footer>
+      <p>&copy; 2026 GREEN 55 &mdash; Tous droits r&eacute;serv&eacute;s.</p>
+      <p style="margin-top:8px;"><a href="#">Mentions l&eacute;gales</a> &bull; <a href="#">CGV</a> &bull; <a href="#">Contact</a></p>
+    </footer>
+  </div>
+
+  <script>
+    // Countdown timer — 24h from page load
+    (function() {
+      var endKey = 'green55_countdown_end';
+      var endTime = localStorage.getItem(endKey);
+
+      if (!endTime || parseInt(endTime) < Date.now()) {
+        endTime = Date.now() + (24 * 60 * 60 * 1000);
+        localStorage.setItem(endKey, endTime.toString());
+      } else {
+        endTime = parseInt(endTime);
+      }
+
+      var timerEl = document.getElementById('countdown');
+
+      function updateTimer() {
+        var diff = endTime - Date.now();
+        if (diff <= 0) {
+          timerEl.textContent = '00:00:00';
+          return;
+        }
+
+        var h = Math.floor(diff / 3600000);
+        var m = Math.floor((diff % 3600000) / 60000);
+        var s = Math.floor((diff % 60000) / 1000);
+
+        timerEl.textContent =
+          (h < 10 ? '0' : '') + h + ':' +
+          (m < 10 ? '0' : '') + m + ':' +
+          (s < 10 ? '0' : '') + s;
+
+        requestAnimationFrame(updateTimer);
+      }
+
+      updateTimer();
+    })();
+
+    // FAQ toggle
+    function toggleFaq(el) {
+      var item = el.parentElement;
+      item.classList.toggle('open');
+    }
+
+    // Checkout buttons — placeholder link
+    document.getElementById('checkoutBtn').addEventListener('click', function(e) {
+      e.preventDefault();
+      alert('Redirection vers Stripe Checkout... (lien placeholder)');
+    });
+    document.getElementById('checkoutBtn2').addEventListener('click', function(e) {
+      e.preventDefault();
+      alert('Redirection vers Stripe Checkout... (lien placeholder)');
+    });
+  </script>
+
+</body>
+</html>

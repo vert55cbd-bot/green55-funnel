@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GREEN 55 — Programme Fitness Personnalis&eacute;</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* NAV */
+    nav {
+      padding: 20px 0;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .logo {
+      font-size: 1.6rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+    .logo span { color: #00d4aa; }
+
+    /* HERO */
+    .hero {
+      padding: 60px 0 40px;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(0,212,170,0.1);
+      color: #00d4aa;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 6px 16px;
+      border-radius: 50px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      border: 1px solid rgba(0,212,170,0.2);
+    }
+    .hero h1 {
+      font-size: 2rem;
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      color: #00d4aa;
+    }
+    .hero p {
+      color: rgba(255,255,255,0.6);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 36px;
+    }
+
+    /* CTA */
+    .cta-btn {
+      display: inline-block;
+      background: #00d4aa;
+      color: #0a0a0a;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      padding: 16px 40px;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 30px rgba(0,212,170,0.3);
+    }
+    .cta-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 0 50px rgba(0,212,170,0.5);
+    }
+    .cta-sub {
+      display: block;
+      margin-top: 12px;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    /* FEATURES */
+    .features {
+      padding: 50px 0;
+    }
+    .features-title {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+    .feature-card {
+      background: #111118;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      transition: border-color 0.3s ease;
+    }
+    .feature-card:hover {
+      border-color: rgba(0,212,170,0.3);
+    }
+    .feature-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(0,212,170,0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .feature-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .feature-card p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+
+    /* HOW IT WORKS */
+    .how {
+      padding: 50px 0;
+    }
+    .how-title {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 36px;
+    }
+    .step {
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 28px;
+    }
+    .step-num {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #00d4aa, #00a88a);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: #0a0a0a;
+      flex-shrink: 0;
+    }
+    .step h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .step p {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.4;
+    }
+
+    /* SOCIAL PROOF */
+    .social-proof {
+      padding: 50px 0;
+    }
+    .social-title {
+      text-align: center;
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 32px;
+    }
+    .testimonial {
+      background: #111118;
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 16px;
+    }
+    .testimonial-stars {
+      color: #00d4aa;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      letter-spacing: 2px;
+    }
+    .testimonial p {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.6;
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding: 30px 0;
+    }
+    .stat {
+      text-align: center;
+      padding: 20px 8px;
+      background: #111118;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .stat-num {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #00d4aa;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      color: rgba(255,255,255,0.4);
+      margin-top: 4px;
+    }
+
+    /* FINAL CTA */
+    .final-cta {
+      text-align: center;
+      padding: 50px 0 80px;
+    }
+    .final-cta h2 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+    .final-cta p {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.9rem;
+      margin-bottom: 32px;
+    }
+
+    /* FOOTER */
+    footer {
+      text-align: center;
+      padding: 30px 0;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    footer p {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.3);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <!-- NAV -->
+    <nav>
+      <div class="logo">GREEN <span>55</span></div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-badge">Propuls&eacute; par l'IA</div>
+      <h1>Ton Programme Fitness <em>Personnalis&eacute;</em> en 2 Minutes</h1>
+      <p>Notre IA analyse ton profil et g&eacute;n&egrave;re un programme nutrition + training 100% adapt&eacute; &agrave; tes objectifs. Gratuit et instantan&eacute;.</p>
+      <a href="survey.html" class="cta-btn">Cr&eacute;er Mon Programme &rarr;</a>
+      <span class="cta-sub">Gratuit &bull; 2 min &bull; Aucune carte requise</span>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features">
+      <h2 class="features-title">Pourquoi GREEN 55 ?</h2>
+
+      <div class="feature-card">
+        <div class="feature-icon">&#129504;</div>
+        <div>
+          <h3>Intelligence Artificielle</h3>
+          <p>Notre algorithme analyse 15+ param&egrave;tres pour cr&eacute;er un programme unique &agrave; ton profil.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">&#127860;</div>
+        <div>
+          <h3>Nutrition Sur-Mesure</h3>
+          <p>Macros, calories et plans repas calcul&eacute;s selon tes pr&eacute;f&eacute;rences alimentaires.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">&#128170;</div>
+        <div>
+          <h3>Training Adapt&eacute;</h3>
+          <p>Salle ou maison, d&eacute;butant ou confirm&eacute;, ton programme s'adapte &agrave; toi.</p>
+        </div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">&#128200;</div>
+        <div>
+          <h3>R&eacute;sultats Mesurables</h3>
+          <p>Suivi de progression et ajustements pour garantir tes r&eacute;sultats.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section class="how">
+      <h2 class="how-title">Comment &ccedil;a marche ?</h2>
+
+      <div class="step">
+        <div class="step-num">1</div>
+        <div>
+          <h3>Remplis le questionnaire</h3>
+          <p>5 &eacute;tapes rapides pour cerner ton profil, tes objectifs et ton mode de vie.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">2</div>
+        <div>
+          <h3>L'IA g&eacute;n&egrave;re ton programme</h3>
+          <p>En quelques secondes, notre algorithme cr&eacute;e un plan 100% personnalis&eacute;.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-num">3</div>
+        <div>
+          <h3>Re&ccedil;ois ton aper&ccedil;u gratuit</h3>
+          <p>D&eacute;couvre tes macros, ton analyse et un aper&ccedil;u 7 jours offert.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOCIAL PROOF -->
+    <section class="social-proof">
+      <h2 class="social-title">Ils nous font confiance</h2>
+
+      <div class="stats">
+        <div class="stat">
+          <div class="stat-num">2.4K+</div>
+          <div class="stat-label">Programmes g&eacute;n&eacute;r&eacute;s</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">4.8/5</div>
+          <div class="stat-label">Satisfaction</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">93%</div>
+          <div class="stat-label">R&eacute;sultats &agrave; 30j</div>
+        </div>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&laquo; J'ai test&eacute; plein d'apps, mais GREEN 55 est le seul programme qui a vraiment compris mon profil. En 4 semaines, -3kg de gras tout en gagnant en force. &raquo;</p>
+        <div class="testimonial-author">Mehdi K. &mdash; Paris, 28 ans</div>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&laquo; Le programme nutrition est incroyable. Des recettes simples adapt&eacute;es &agrave; mon r&eacute;gime halal. Je recommande &agrave; 100%. &raquo;</p>
+        <div class="testimonial-author">Amina B. &mdash; Lyon, 24 ans</div>
+      </div>
+
+      <div class="testimonial">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p>&laquo; D&eacute;butante totale, j'avais peur de me blesser. Le programme maison &eacute;tait parfait pour commencer en douceur. &raquo;</p>
+        <div class="testimonial-author">Clara M. &mdash; Bordeaux, 32 ans</div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="final-cta">
+      <h2>Pr&ecirc;t &agrave; transformer ton physique ?</h2>
+      <p>Rejoins les 2 400+ personnes qui ont d&eacute;j&agrave; g&eacute;n&eacute;r&eacute; leur programme avec GREEN 55.</p>
+      <a href="survey.html" class="cta-btn">Commencer Maintenant &rarr;</a>
+      <span class="cta-sub">100% gratuit &bull; R&eacute;sultats en 2 minutes</span>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>&copy; 2026 GREEN 55 &mdash; Tous droits r&eacute;serv&eacute;s.</p>
+    </footer>
+  </div>
+
+</body>
+</html>

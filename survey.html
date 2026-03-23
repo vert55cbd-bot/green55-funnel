@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GREEN 55 &mdash; Questionnaire</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a0a0a;
+      color: #ffffff;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .container {
+      max-width: 480px;
+      margin: 0 auto;
+      padding: 0 20px;
+      padding-bottom: 40px;
+    }
+
+    /* NAV */
+    nav {
+      padding: 20px 0;
+      text-align: center;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      margin-bottom: 24px;
+    }
+    .logo {
+      font-size: 1.4rem;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+    .logo span { color: #00d4aa; }
+
+    /* PROGRESS */
+    .progress-container {
+      margin-bottom: 32px;
+    }
+    .progress-steps {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+    .progress-step {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      flex: 1;
+      transition: color 0.4s ease;
+    }
+    .progress-step.active {
+      color: #00d4aa;
+    }
+    .progress-step.done {
+      color: rgba(0,212,170,0.6);
+    }
+    .progress-bar-track {
+      width: 100%;
+      height: 4px;
+      background: #1a1a2e;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #00d4aa, #00f5c8);
+      border-radius: 4px;
+      transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      width: 20%;
+    }
+
+    /* STEP SECTIONS */
+    .step-section {
+      display: none;
+      animation: fadeSlideIn 0.4s ease;
+    }
+    .step-section.active {
+      display: block;
+    }
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .step-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .step-subtitle {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 28px;
+    }
+
+    /* FORM ELEMENTS */
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 8px;
+    }
+    .form-group label .required {
+      color: #00d4aa;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="number"],
+    input[type="tel"],
+    textarea {
+      width: 100%;
+      padding: 14px 16px;
+      background: #1a1a2e;
+      border: 1.5px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    input:focus, textarea:focus {
+      border-color: #00d4aa;
+      box-shadow: 0 0 0 3px rgba(0,212,170,0.1);
+    }
+    input::placeholder, textarea::placeholder {
+      color: rgba(255,255,255,0.25);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    /* CUSTOM SELECT */
+    .custom-select {
+      position: relative;
+    }
+    .custom-select select {
+      width: 100%;
+      padding: 14px 44px 14px 16px;
+      background: #1a1a2e;
+      border: 1.5px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      color: #ffffff;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      outline: none;
+      cursor: pointer;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+      transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    }
+    .custom-select select:focus {
+      border-color: #00d4aa;
+      box-shadow: 0 0 0 3px rgba(0,212,170,0.1);
+    }
+    .custom-select::after {
+      content: '';
+      position: absolute;
+      right: 16px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 0;
+      height: 0;
+      border-left: 5px solid transparent;
+      border-right: 5px solid transparent;
+      border-top: 6px solid #00d4aa;
+      pointer-events: none;
+    }
+    .custom-select select option {
+      background: #1a1a2e;
+      color: #ffffff;
+      padding: 8px;
+    }
+
+    /* RADIO / CHOICE CARDS */
+    .choice-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .choice-group.single-col {
+      grid-template-columns: 1fr;
+    }
+    .choice-card {
+      position: relative;
+    }
+    .choice-card input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+    .choice-card label.choice-label {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 14px 12px;
+      background: #1a1a2e;
+      border: 1.5px solid rgba(255,255,255,0.08);
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: rgba(255,255,255,0.6);
+      transition: all 0.3s ease;
+      min-height: 48px;
+    }
+    .choice-card input[type="radio"]:checked + label.choice-label {
+      background: rgba(0,212,170,0.1);
+      border-color: #00d4aa;
+      color: #ffffff;
+      font-weight: 600;
+    }
+    .choice-card label.choice-label:hover {
+      border-color: rgba(0,212,170,0.4);
+    }
+
+    /* BUTTONS */
+    .btn-row {
+      display: flex;
+      gap: 12px;
+      margin-top: 32px;
+    }
+    .btn-next {
+      flex: 1;
+      padding: 16px 24px;
+      background: #00d4aa;
+      color: #0a0a0a;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 700;
+      border: none;
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 20px rgba(0,212,170,0.2);
+    }
+    .btn-next:hover {
+      box-shadow: 0 0 40px rgba(0,212,170,0.4);
+      transform: translateY(-1px);
+    }
+    .btn-next:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      transform: none;
+      box-shadow: none;
+    }
+    .btn-back {
+      padding: 16px 24px;
+      background: transparent;
+      color: rgba(255,255,255,0.5);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 600;
+      border: 1.5px solid rgba(255,255,255,0.1);
+      border-radius: 50px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn-back:hover {
+      border-color: rgba(255,255,255,0.3);
+      color: #ffffff;
+    }
+
+    /* INLINE GROUPS */
+    .inline-group {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    /* LOADING OVERLAY */
+    .loading-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: #0a0a0a;
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+    .loading-overlay.visible {
+      display: flex;
+    }
+    .loading-spinner {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #00d4aa 0%, transparent 70%);
+      animation: pulse 1.5s ease-in-out infinite;
+      margin-bottom: 32px;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(0.8); opacity: 0.4; }
+      50% { transform: scale(1.2); opacity: 1; }
+    }
+    .loading-text {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+    .loading-sub {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
+      text-align: center;
+    }
+    .loading-dots::after {
+      content: '';
+      animation: dots 1.5s steps(4, end) infinite;
+    }
+    @keyframes dots {
+      0% { content: ''; }
+      25% { content: '.'; }
+      50% { content: '..'; }
+      75% { content: '...'; }
+    }
+
+    /* ERROR MSG */
+    .error-msg {
+      display: none;
+      background: rgba(255,60,60,0.1);
+      border: 1px solid rgba(255,60,60,0.3);
+      color: #ff6b6b;
+      padding: 12px 16px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      margin-top: 12px;
+    }
+    .error-msg.visible {
+      display: block;
+    }
+
+    /* INPUT ERROR STATE */
+    input.input-error,
+    select.input-error {
+      border-color: #ff6b6b !important;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <nav>
+      <div class="logo">GREEN <span>55</span></div>
+    </nav>
+
+    <!-- PROGRESS BAR -->
+    <div class="progress-container">
+      <div class="progress-steps">
+        <div class="progress-step active" data-step="1">Profil</div>
+        <div class="progress-step" data-step="2">Objectif</div>
+        <div class="progress-step" data-step="3">Training</div>
+        <div class="progress-step" data-step="4">Nutrition</div>
+        <div class="progress-step" data-step="5">Finalisation</div>
+      </div>
+      <div class="progress-bar-track">
+        <div class="progress-bar-fill" id="progressFill"></div>
+      </div>
+    </div>
+
+    <form id="surveyForm" novalidate>
+
+      <!-- STEP 1: PROFIL -->
+      <div class="step-section active" data-step="1">
+        <h2 class="step-title">Ton Profil</h2>
+        <p class="step-subtitle">Dis-nous en plus sur toi pour personnaliser ton programme.</p>
+
+        <div class="form-group">
+          <label>Pr&eacute;nom <span class="required">*</span></label>
+          <input type="text" id="prenom" name="prenom" placeholder="Ex: Mehdi" required>
+        </div>
+
+        <div class="form-group">
+          <label>Email <span class="required">*</span></label>
+          <input type="email" id="email" name="email" placeholder="ton@email.com" required>
+        </div>
+
+        <div class="form-group">
+          <label>Sexe <span class="required">*</span></label>
+          <div class="choice-group">
+            <div class="choice-card">
+              <input type="radio" id="sexe_h" name="sexe" value="Homme" required>
+              <label class="choice-label" for="sexe_h">Homme</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="sexe_f" name="sexe" value="Femme">
+              <label class="choice-label" for="sexe_f">Femme</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>&Acirc;ge <span class="required">*</span></label>
+          <input type="number" id="age" name="age" placeholder="25" min="14" max="80" required>
+        </div>
+
+        <div class="inline-group">
+          <div class="form-group">
+            <label>Taille (cm) <span class="required">*</span></label>
+            <input type="number" id="taille" name="taille" placeholder="175" min="100" max="250" required>
+          </div>
+          <div class="form-group">
+            <label>Poids (kg) <span class="required">*</span></label>
+            <input type="number" id="poids" name="poids" placeholder="75" min="30" max="300" required>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn-next" onclick="goToStep(2)">Suivant &rarr;</button>
+        </div>
+        <div class="error-msg" id="error-1"></div>
+      </div>
+
+      <!-- STEP 2: OBJECTIF -->
+      <div class="step-section" data-step="2">
+        <h2 class="step-title">Ton Objectif</h2>
+        <p class="step-subtitle">Quel est ton objectif principal ?</p>
+
+        <div class="form-group">
+          <label>Objectif <span class="required">*</span></label>
+          <div class="choice-group">
+            <div class="choice-card">
+              <input type="radio" id="obj_seche" name="objectif" value="Sèche" required>
+              <label class="choice-label" for="obj_seche">S&egrave;che</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="obj_masse" name="objectif" value="Prise de masse">
+              <label class="choice-label" for="obj_masse">Prise de masse</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="obj_recomp" name="objectif" value="Recomposition">
+              <label class="choice-label" for="obj_recomp">Recomposition</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="obj_maintien" name="objectif" value="Maintien">
+              <label class="choice-label" for="obj_maintien">Maintien</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Priorit&eacute; physique</label>
+          <div class="custom-select">
+            <select id="priorite" name="priorite">
+              <option value="" disabled selected>Choisis ta priorit&eacute;</option>
+              <option value="Perdre du gras">Perdre du gras</option>
+              <option value="Gagner du muscle">Gagner du muscle</option>
+              <option value="Améliorer la condition physique">Am&eacute;liorer la condition physique</option>
+              <option value="Améliorer l'énergie">Am&eacute;liorer l'&eacute;nergie</option>
+              <option value="Améliorer la posture">Am&eacute;liorer la posture</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Anciennet&eacute; en sport <span class="required">*</span></label>
+          <div class="choice-group single-col">
+            <div class="choice-card">
+              <input type="radio" id="xp_deb" name="experience" value="Débutant" required>
+              <label class="choice-label" for="xp_deb">D&eacute;butant (moins de 6 mois)</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="xp_mid" name="experience" value="6 mois à 2 ans">
+              <label class="choice-label" for="xp_mid">Interm&eacute;diaire (6 mois &agrave; 2 ans)</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="xp_adv" name="experience" value="2+ ans">
+              <label class="choice-label" for="xp_adv">Confirm&eacute; (2+ ans)</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn-back" onclick="goToStep(1)">&larr; Retour</button>
+          <button type="button" class="btn-next" onclick="goToStep(3)">Suivant &rarr;</button>
+        </div>
+        <div class="error-msg" id="error-2"></div>
+      </div>
+
+      <!-- STEP 3: TRAINING -->
+      <div class="step-section" data-step="3">
+        <h2 class="step-title">Ton Training</h2>
+        <p class="step-subtitle">Parle-nous de tes habitudes d'entra&icirc;nement.</p>
+
+        <div class="form-group">
+          <label>Lieu d'entra&icirc;nement <span class="required">*</span></label>
+          <div class="choice-group single-col">
+            <div class="choice-card">
+              <input type="radio" id="lieu_salle" name="lieu" value="Salle" required>
+              <label class="choice-label" for="lieu_salle">Salle de sport</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="lieu_maison" name="lieu" value="Maison">
+              <label class="choice-label" for="lieu_maison">Maison</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="lieu_deux" name="lieu" value="Les deux">
+              <label class="choice-label" for="lieu_deux">Les deux</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Fr&eacute;quence d'entra&icirc;nement <span class="required">*</span></label>
+          <div class="choice-group">
+            <div class="choice-card">
+              <input type="radio" id="freq_2" name="frequence" value="2" required>
+              <label class="choice-label" for="freq_2">2x/sem</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="freq_3" name="frequence" value="3">
+              <label class="choice-label" for="freq_3">3x/sem</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="freq_4" name="frequence" value="4">
+              <label class="choice-label" for="freq_4">4x/sem</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="freq_5" name="frequence" value="5">
+              <label class="choice-label" for="freq_5">5x/sem</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="freq_6" name="frequence" value="6">
+              <label class="choice-label" for="freq_6">6x/sem</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Dur&eacute;e de s&eacute;ance <span class="required">*</span></label>
+          <div class="choice-group">
+            <div class="choice-card">
+              <input type="radio" id="dur_30" name="duree" value="30" required>
+              <label class="choice-label" for="dur_30">30 min</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="dur_45" name="duree" value="45">
+              <label class="choice-label" for="dur_45">45 min</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="dur_60" name="duree" value="60">
+              <label class="choice-label" for="dur_60">60 min</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="dur_90" name="duree" value="90">
+              <label class="choice-label" for="dur_90">90 min</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Horaire pr&eacute;f&eacute;r&eacute;</label>
+          <div class="custom-select">
+            <select id="horaire" name="horaire">
+              <option value="" disabled selected>Choisis un horaire</option>
+              <option value="Matin (6h-10h)">Matin (6h-10h)</option>
+              <option value="Midi (11h-14h)">Midi (11h-14h)</option>
+              <option value="Après-midi (14h-18h)">Apr&egrave;s-midi (14h-18h)</option>
+              <option value="Soir (18h-22h)">Soir (18h-22h)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Blessures ou limitations</label>
+          <textarea id="blessures" name="blessures" placeholder="Ex: douleur au genou droit, hernie discale... (laisser vide si aucune)"></textarea>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn-back" onclick="goToStep(2)">&larr; Retour</button>
+          <button type="button" class="btn-next" onclick="goToStep(4)">Suivant &rarr;</button>
+        </div>
+        <div class="error-msg" id="error-3"></div>
+      </div>
+
+      <!-- STEP 4: NUTRITION -->
+      <div class="step-section" data-step="4">
+        <h2 class="step-title">Ta Nutrition</h2>
+        <p class="step-subtitle">Tes pr&eacute;f&eacute;rences alimentaires pour un programme adapt&eacute;.</p>
+
+        <div class="form-group">
+          <label>Type d'alimentation <span class="required">*</span></label>
+          <div class="choice-group">
+            <div class="choice-card">
+              <input type="radio" id="diet_normal" name="alimentation" value="Normal" required>
+              <label class="choice-label" for="diet_normal">Normal</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="diet_vege" name="alimentation" value="Végétarien">
+              <label class="choice-label" for="diet_vege">V&eacute;g&eacute;tarien</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="diet_vegan" name="alimentation" value="Vegan">
+              <label class="choice-label" for="diet_vegan">Vegan</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="diet_halal" name="alimentation" value="Halal">
+              <label class="choice-label" for="diet_halal">Halal</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="diet_sg" name="alimentation" value="Sans gluten">
+              <label class="choice-label" for="diet_sg">Sans gluten</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Nombre de repas par jour <span class="required">*</span></label>
+          <div class="choice-group">
+            <div class="choice-card">
+              <input type="radio" id="repas_3" name="repas" value="3" required>
+              <label class="choice-label" for="repas_3">3</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="repas_4" name="repas" value="4">
+              <label class="choice-label" for="repas_4">4</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="repas_5" name="repas" value="5">
+              <label class="choice-label" for="repas_5">5</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Niveau en cuisine <span class="required">*</span></label>
+          <div class="choice-group single-col">
+            <div class="choice-card">
+              <input type="radio" id="cuisine_basique" name="cuisine" value="Basique" required>
+              <label class="choice-label" for="cuisine_basique">Basique (simple et rapide)</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="cuisine_moyen" name="cuisine" value="Moyen">
+              <label class="choice-label" for="cuisine_moyen">Moyen (&agrave; l'aise en cuisine)</label>
+            </div>
+            <div class="choice-card">
+              <input type="radio" id="cuisine_avance" name="cuisine" value="Avancé">
+              <label class="choice-label" for="cuisine_avance">Avanc&eacute; (j'aime cuisiner)</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Aliments exclus</label>
+          <input type="text" id="aliments_exclus" name="aliments_exclus" placeholder="Ex: fruits de mer, lactose... (laisser vide si aucun)">
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn-back" onclick="goToStep(3)">&larr; Retour</button>
+          <button type="button" class="btn-next" onclick="goToStep(5)">Suivant &rarr;</button>
+        </div>
+        <div class="error-msg" id="error-4"></div>
+      </div>
+
+      <!-- STEP 5: FINALISATION -->
+      <div class="step-section" data-step="5">
+        <h2 class="step-title">Finalisation</h2>
+        <p class="step-subtitle">Derniers d&eacute;tails pour optimiser ton programme.</p>
+
+        <div class="form-group">
+          <label>Heures de sommeil par nuit</label>
+          <div class="custom-select">
+            <select id="sommeil" name="sommeil">
+              <option value="" disabled selected>Choisis une dur&eacute;e</option>
+              <option value="Moins de 6h">Moins de 6h</option>
+              <option value="6-7h">6-7h</option>
+              <option value="7-8h">7-8h</option>
+              <option value="8h+">8h+</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Compl&eacute;ments alimentaires utilis&eacute;s</label>
+          <input type="text" id="complements" name="complements" placeholder="Ex: whey, cr&eacute;atine, vitamines... (laisser vide si aucun)">
+        </div>
+
+        <div class="form-group">
+          <label>Num&eacute;ro WhatsApp (optionnel)</label>
+          <input type="tel" id="whatsapp" name="whatsapp" placeholder="+33 6 XX XX XX XX">
+          <p style="font-size:0.75rem;color:rgba(255,255,255,0.3);margin-top:6px;">Pour recevoir ton programme directement par WhatsApp.</p>
+        </div>
+
+        <div class="btn-row">
+          <button type="button" class="btn-back" onclick="goToStep(4)">&larr; Retour</button>
+          <button type="button" class="btn-next" id="submitBtn" onclick="submitForm()">G&eacute;n&eacute;rer Mon Programme &#10024;</button>
+        </div>
+        <div class="error-msg" id="error-5"></div>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- LOADING OVERLAY -->
+  <div class="loading-overlay" id="loadingOverlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">G&eacute;n&eacute;ration de ton programme en cours<span class="loading-dots"></span></div>
+    <div class="loading-sub">Notre IA analyse ton profil...</div>
+  </div>
+
+  <script>
+    var currentStep = 1;
+    var totalSteps = 5;
+
+    function goToStep(step) {
+      if (step > currentStep) {
+        if (!validateStep(currentStep)) return;
+      }
+
+      document.querySelectorAll('.step-section').forEach(function(s) {
+        s.classList.remove('active');
+      });
+
+      var target = document.querySelector('.step-section[data-step="' + step + '"]');
+      if (target) {
+        target.classList.remove('active');
+        void target.offsetWidth;
+        target.classList.add('active');
+      }
+
+      currentStep = step;
+      updateProgress();
+    }
+
+    function updateProgress() {
+      var pct = (currentStep / totalSteps) * 100;
+      document.getElementById('progressFill').style.width = pct + '%';
+
+      document.querySelectorAll('.progress-step').forEach(function(el) {
+        var s = parseInt(el.getAttribute('data-step'));
+        el.classList.remove('active', 'done');
+        if (s === currentStep) el.classList.add('active');
+        else if (s < currentStep) el.classList.add('done');
+      });
+    }
+
+    function validateStep(step) {
+      var errorEl = document.getElementById('error-' + step);
+      errorEl.classList.remove('visible');
+      errorEl.textContent = '';
+
+      document.querySelectorAll('.step-section[data-step="' + step + '"] .input-error').forEach(function(el) {
+        el.classList.remove('input-error');
+      });
+
+      if (step === 1) {
+        var prenom = document.getElementById('prenom').value.trim();
+        var email = document.getElementById('email').value.trim();
+        var sexe = document.querySelector('input[name="sexe"]:checked');
+        var age = document.getElementById('age').value;
+        var taille = document.getElementById('taille').value;
+        var poids = document.getElementById('poids').value;
+
+        if (!prenom) return showError(step, 'Merci d\'entrer ton pr\u00e9nom.', 'prenom');
+        if (!email || !email.includes('@')) return showError(step, 'Merci d\'entrer un email valide.', 'email');
+        if (!sexe) return showError(step, 'Merci de s\u00e9lectionner ton sexe.');
+        if (!age || age < 14 || age > 80) return showError(step, 'Merci d\'entrer un \u00e2ge valide (14-80).', 'age');
+        if (!taille || taille < 100 || taille > 250) return showError(step, 'Merci d\'entrer une taille valide (100-250 cm).', 'taille');
+        if (!poids || poids < 30 || poids > 300) return showError(step, 'Merci d\'entrer un poids valide (30-300 kg).', 'poids');
+      }
+
+      if (step === 2) {
+        var objectif = document.querySelector('input[name="objectif"]:checked');
+        var experience = document.querySelector('input[name="experience"]:checked');
+        if (!objectif) return showError(step, 'Merci de choisir ton objectif.');
+        if (!experience) return showError(step, 'Merci de s\u00e9lectionner ton anciennet\u00e9 en sport.');
+      }
+
+      if (step === 3) {
+        var lieu = document.querySelector('input[name="lieu"]:checked');
+        var frequence = document.querySelector('input[name="frequence"]:checked');
+        var duree = document.querySelector('input[name="duree"]:checked');
+        if (!lieu) return showError(step, 'Merci de choisir ton lieu d\'entra\u00eenement.');
+        if (!frequence) return showError(step, 'Merci de choisir ta fr\u00e9quence d\'entra\u00eenement.');
+        if (!duree) return showError(step, 'Merci de choisir la dur\u00e9e de tes s\u00e9ances.');
+      }
+
+      if (step === 4) {
+        var alimentation = document.querySelector('input[name="alimentation"]:checked');
+        var repas = document.querySelector('input[name="repas"]:checked');
+        var cuisine = document.querySelector('input[name="cuisine"]:checked');
+        if (!alimentation) return showError(step, 'Merci de choisir ton type d\'alimentation.');
+        if (!repas) return showError(step, 'Merci de choisir le nombre de repas par jour.');
+        if (!cuisine) return showError(step, 'Merci de s\u00e9lectionner ton niveau en cuisine.');
+      }
+
+      return true;
+    }
+
+    function showError(step, msg, fieldId) {
+      var errorEl = document.getElementById('error-' + step);
+      errorEl.textContent = msg;
+      errorEl.classList.add('visible');
+      if (fieldId) {
+        var field = document.getElementById(fieldId);
+        if (field) field.classList.add('input-error');
+      }
+      return false;
+    }
+
+    function getRadioValue(name) {
+      var el = document.querySelector('input[name="' + name + '"]:checked');
+      return el ? el.value : '';
+    }
+
+    function submitForm() {
+      if (!validateStep(5)) return;
+
+      var data = {
+        prenom: document.getElementById('prenom').value.trim(),
+        email: document.getElementById('email').value.trim(),
+        sexe: getRadioValue('sexe'),
+        age: parseInt(document.getElementById('age').value),
+        taille: parseInt(document.getElementById('taille').value),
+        poids: parseInt(document.getElementById('poids').value),
+        objectif: getRadioValue('objectif'),
+        priorite: document.getElementById('priorite').value || '',
+        experience: getRadioValue('experience'),
+        lieu: getRadioValue('lieu'),
+        frequence: parseInt(getRadioValue('frequence')),
+        duree: parseInt(getRadioValue('duree')),
+        horaire: document.getElementById('horaire').value || '',
+        blessures: document.getElementById('blessures').value.trim(),
+        alimentation: getRadioValue('alimentation'),
+        repas: parseInt(getRadioValue('repas')),
+        cuisine: getRadioValue('cuisine'),
+        aliments_exclus: document.getElementById('aliments_exclus').value.trim(),
+        sommeil: document.getElementById('sommeil').value || '',
+        complements: document.getElementById('complements').value.trim(),
+        whatsapp: document.getElementById('whatsapp').value.trim()
+      };
+
+      var submitBtn = document.getElementById('submitBtn');
+      submitBtn.disabled = true;
+
+      var overlay = document.getElementById('loadingOverlay');
+      overlay.classList.add('visible');
+
+      fetch('https://green55-agent-production.up.railway.app/api/analyse', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-api-key': 'green55_prod_key_2026'
+        },
+        body: JSON.stringify(data)
+      })
+      .then(function(res) {
+        if (!res.ok) throw new Error('Erreur serveur (' + res.status + ')');
+        return res.json();
+      })
+      .then(function(result) {
+        sessionStorage.setItem('green55_prenom', data.prenom);
+        sessionStorage.setItem('green55_results', JSON.stringify(result));
+        setTimeout(function() {
+          window.location.href = 'merci.html';
+        }, 2000);
+      })
+      .catch(function(err) {
+        overlay.classList.remove('visible');
+        submitBtn.disabled = false;
+        showError(5, 'Une erreur est survenue : ' + err.message + '. Merci de r\u00e9essayer.');
+      });
+    }
+  </script>
+
+</body>
+</html>
