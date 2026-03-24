@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GREEN 55 — Programme Fitness Personnalis&eacute;</title>
+  <title>JIMSEUH &mdash; Programme Fitness Premium Personnalis&eacute;</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -13,13 +13,14 @@
     body {
       font-family: 'Inter', sans-serif;
       background: #0a0a0a;
-      color: #ffffff;
+      color: #f5f0eb;
       min-height: 100vh;
       -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
     }
 
     .container {
-      max-width: 480px;
+      max-width: 520px;
       margin: 0 auto;
       padding: 0 20px;
     }
@@ -28,106 +29,234 @@
     nav {
       padding: 20px 0;
       text-align: center;
-      border-bottom: 1px solid rgba(255,255,255,0.06);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
     }
     .logo {
-      font-size: 1.6rem;
+      font-size: 1.5rem;
       font-weight: 900;
-      letter-spacing: 3px;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      color: #f5f0eb;
     }
-    .logo span { color: #00d4aa; }
+    .logo-dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      background: #c9a96e;
+      border-radius: 50%;
+      margin-left: 2px;
+      vertical-align: middle;
+    }
 
     /* HERO */
     .hero {
-      padding: 60px 0 40px;
+      padding: 70px 0 50px;
       text-align: center;
+      position: relative;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(201,169,110,0.08) 0%, transparent 70%);
+      pointer-events: none;
     }
     .hero-badge {
       display: inline-block;
-      background: rgba(0,212,170,0.1);
-      color: #00d4aa;
-      font-size: 0.75rem;
-      font-weight: 600;
-      padding: 6px 16px;
+      background: rgba(201,169,110,0.1);
+      color: #c9a96e;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 8px 20px;
       border-radius: 50px;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       text-transform: uppercase;
-      margin-bottom: 24px;
-      border: 1px solid rgba(0,212,170,0.2);
+      margin-bottom: 28px;
+      border: 1px solid rgba(201,169,110,0.2);
     }
     .hero h1 {
-      font-size: 2rem;
-      font-weight: 800;
-      line-height: 1.2;
+      font-size: 2.2rem;
+      font-weight: 900;
+      line-height: 1.15;
       margin-bottom: 20px;
+      color: #ffffff;
+      letter-spacing: -0.5px;
     }
     .hero h1 em {
       font-style: normal;
-      color: #00d4aa;
+      background: linear-gradient(135deg, #c9a96e, #e8d5a8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
     }
     .hero p {
-      color: rgba(255,255,255,0.6);
+      color: rgba(245,240,235,0.55);
       font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 36px;
+      line-height: 1.7;
+      margin-bottom: 40px;
+      max-width: 420px;
+      margin-left: auto;
+      margin-right: auto;
     }
 
-    /* CTA */
+    /* CTA BUTTON */
     .cta-btn {
       display: inline-block;
-      background: #00d4aa;
+      background: linear-gradient(135deg, #c9a96e, #b8944f);
       color: #0a0a0a;
       font-family: 'Inter', sans-serif;
       font-size: 1rem;
-      font-weight: 700;
-      padding: 16px 40px;
+      font-weight: 800;
+      padding: 18px 44px;
       border: none;
       border-radius: 50px;
       cursor: pointer;
       text-decoration: none;
       transition: all 0.3s ease;
-      box-shadow: 0 0 30px rgba(0,212,170,0.3);
+      box-shadow: 0 4px 30px rgba(201,169,110,0.25);
+      letter-spacing: 0.5px;
     }
     .cta-btn:hover {
       transform: translateY(-2px);
-      box-shadow: 0 0 50px rgba(0,212,170,0.5);
+      box-shadow: 0 8px 50px rgba(201,169,110,0.4);
     }
     .cta-sub {
       display: block;
-      margin-top: 12px;
-      font-size: 0.8rem;
-      color: rgba(255,255,255,0.4);
+      margin-top: 16px;
+      font-size: 0.75rem;
+      color: rgba(245,240,235,0.35);
+      letter-spacing: 0.5px;
+    }
+
+    /* TRUST BAR */
+    .trust-bar {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      padding: 28px 0;
+      border-top: 1px solid rgba(255,255,255,0.04);
+      border-bottom: 1px solid rgba(255,255,255,0.04);
+      margin-bottom: 60px;
+    }
+    .trust-item {
+      text-align: center;
+    }
+    .trust-num {
+      font-size: 1.3rem;
+      font-weight: 900;
+      color: #c9a96e;
+    }
+    .trust-label {
+      font-size: 0.65rem;
+      color: rgba(245,240,235,0.4);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 2px;
+    }
+
+    /* HOW IT WORKS */
+    .how-section {
+      padding: 0 0 60px;
+    }
+    .section-label {
+      text-align: center;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: #c9a96e;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      margin-bottom: 12px;
+    }
+    .section-heading {
+      text-align: center;
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 40px;
+    }
+    .step-card {
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      padding: 22px;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 16px;
+      transition: border-color 0.3s ease;
+    }
+    .step-card:hover {
+      border-color: rgba(201,169,110,0.2);
+    }
+    .step-num {
+      width: 44px;
+      height: 44px;
+      background: linear-gradient(135deg, #c9a96e, #b8944f);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 900;
+      color: #0a0a0a;
+      flex-shrink: 0;
+    }
+    .step-card h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: #ffffff;
+    }
+    .step-card p {
+      font-size: 0.85rem;
+      color: rgba(245,240,235,0.45);
+      line-height: 1.5;
     }
 
     /* FEATURES */
-    .features {
-      padding: 50px 0;
-    }
-    .features-title {
-      text-align: center;
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 32px;
+    .features-section {
+      padding: 0 0 60px;
     }
     .feature-card {
-      background: #111118;
-      border: 1px solid rgba(255,255,255,0.06);
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.05);
       border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 16px;
+      padding: 28px 24px;
+      margin-bottom: 14px;
       display: flex;
-      gap: 16px;
+      gap: 18px;
       align-items: flex-start;
       transition: border-color 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 3px;
+      height: 100%;
+      background: linear-gradient(180deg, #c9a96e, transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
     }
     .feature-card:hover {
-      border-color: rgba(0,212,170,0.3);
+      border-color: rgba(201,169,110,0.15);
+    }
+    .feature-card:hover::before {
+      opacity: 1;
     }
     .feature-icon {
-      width: 48px;
-      height: 48px;
-      background: rgba(0,212,170,0.1);
-      border-radius: 12px;
+      width: 50px;
+      height: 50px;
+      background: rgba(201,169,110,0.08);
+      border: 1px solid rgba(201,169,110,0.12);
+      border-radius: 14px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -138,138 +267,196 @@
       font-size: 0.95rem;
       font-weight: 700;
       margin-bottom: 6px;
+      color: #ffffff;
     }
     .feature-card p {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.5;
-    }
-
-    /* HOW IT WORKS */
-    .how {
-      padding: 50px 0;
-    }
-    .how-title {
-      text-align: center;
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 36px;
-    }
-    .step {
-      display: flex;
-      gap: 16px;
-      align-items: flex-start;
-      margin-bottom: 28px;
-    }
-    .step-num {
-      width: 40px;
-      height: 40px;
-      background: linear-gradient(135deg, #00d4aa, #00a88a);
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 0.9rem;
-      font-weight: 800;
-      color: #0a0a0a;
-      flex-shrink: 0;
-    }
-    .step h3 {
-      font-size: 0.95rem;
-      font-weight: 700;
-      margin-bottom: 4px;
-    }
-    .step p {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.5);
-      line-height: 1.4;
+      font-size: 0.84rem;
+      color: rgba(245,240,235,0.45);
+      line-height: 1.55;
     }
 
     /* SOCIAL PROOF */
-    .social-proof {
-      padding: 50px 0;
+    .proof-section {
+      padding: 0 0 60px;
     }
-    .social-title {
-      text-align: center;
-      font-size: 1.3rem;
-      font-weight: 700;
-      margin-bottom: 32px;
-    }
-    .testimonial {
-      background: #111118;
-      border: 1px solid rgba(255,255,255,0.06);
-      border-radius: 16px;
-      padding: 24px;
-      margin-bottom: 16px;
-    }
-    .testimonial-stars {
-      color: #00d4aa;
-      font-size: 0.9rem;
-      margin-bottom: 12px;
-      letter-spacing: 2px;
-    }
-    .testimonial p {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.7);
-      line-height: 1.6;
-      margin-bottom: 12px;
-      font-style: italic;
-    }
-    .testimonial-author {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: rgba(255,255,255,0.4);
-    }
-
-    .stats {
+    .stats-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      padding: 30px 0;
+      gap: 10px;
+      margin-bottom: 28px;
     }
-    .stat {
+    .stat-card {
       text-align: center;
-      padding: 20px 8px;
-      background: #111118;
-      border-radius: 12px;
-      border: 1px solid rgba(255,255,255,0.06);
+      padding: 22px 8px;
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 14px;
     }
     .stat-num {
       font-size: 1.4rem;
-      font-weight: 800;
-      color: #00d4aa;
+      font-weight: 900;
+      color: #c9a96e;
     }
     .stat-label {
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.4);
+      font-size: 0.65rem;
+      color: rgba(245,240,235,0.4);
       margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .testimonial-card {
+      background: #111111;
+      border: 1px solid rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 14px;
+    }
+    .testimonial-stars {
+      color: #c9a96e;
+      font-size: 0.85rem;
+      margin-bottom: 14px;
+      letter-spacing: 2px;
+    }
+    .testimonial-text {
+      font-size: 0.9rem;
+      color: rgba(245,240,235,0.65);
+      line-height: 1.65;
+      margin-bottom: 16px;
+      font-style: italic;
+    }
+    .testimonial-author {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .author-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(201,169,110,0.2), rgba(201,169,110,0.05));
+      border: 1px solid rgba(201,169,110,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #c9a96e;
+      flex-shrink: 0;
+    }
+    .author-name {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: rgba(245,240,235,0.8);
+    }
+    .author-detail {
+      font-size: 0.75rem;
+      color: rgba(245,240,235,0.35);
+      margin-top: 2px;
+    }
+    .testimonial-result {
+      display: inline-block;
+      background: rgba(201,169,110,0.1);
+      color: #c9a96e;
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 5px 12px;
+      border-radius: 6px;
+      margin-top: 14px;
+      letter-spacing: 0.3px;
     }
 
     /* FINAL CTA */
     .final-cta {
       text-align: center;
-      padding: 50px 0 80px;
+      padding: 50px 0 40px;
+      border-top: 1px solid rgba(255,255,255,0.05);
     }
     .final-cta h2 {
-      font-size: 1.5rem;
-      font-weight: 800;
-      margin-bottom: 16px;
+      font-size: 1.6rem;
+      font-weight: 900;
+      margin-bottom: 14px;
+      color: #ffffff;
+    }
+    .final-cta h2 em {
+      font-style: normal;
+      color: #c9a96e;
     }
     .final-cta p {
-      color: rgba(255,255,255,0.5);
+      color: rgba(245,240,235,0.45);
       font-size: 0.9rem;
       margin-bottom: 32px;
+      line-height: 1.6;
     }
 
     /* FOOTER */
     footer {
       text-align: center;
-      padding: 30px 0;
-      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 30px 0 100px;
+      border-top: 1px solid rgba(255,255,255,0.04);
+    }
+    footer .footer-logo {
+      font-size: 1rem;
+      font-weight: 900;
+      letter-spacing: 4px;
+      color: rgba(245,240,235,0.3);
+      margin-bottom: 12px;
     }
     footer p {
-      font-size: 0.75rem;
-      color: rgba(255,255,255,0.3);
+      font-size: 0.72rem;
+      color: rgba(245,240,235,0.2);
+      line-height: 1.6;
+    }
+    footer a {
+      color: rgba(245,240,235,0.3);
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+    footer a:hover {
+      color: #c9a96e;
+    }
+
+    /* STICKY MOBILE CTA */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      padding: 14px 20px;
+      z-index: 100;
+      border-top: 1px solid rgba(201,169,110,0.15);
+    }
+    .sticky-cta .sticky-inner {
+      max-width: 520px;
+      margin: 0 auto;
+    }
+    .sticky-cta .cta-btn {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 16px 24px;
+      font-size: 0.95rem;
+    }
+
+    /* SCROLL ANIMATIONS */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 480px) {
+      .hero h1 { font-size: 1.9rem; }
+      .section-heading { font-size: 1.3rem; }
+      .sticky-cta { display: block; }
+      footer { padding-bottom: 100px; }
     }
   </style>
 </head>
@@ -278,135 +465,213 @@
   <div class="container">
     <!-- NAV -->
     <nav>
-      <div class="logo">GREEN <span>55</span></div>
+      <div class="logo">JIMSEUH<span class="logo-dot"></span></div>
     </nav>
 
     <!-- HERO -->
     <section class="hero">
-      <div class="hero-badge">Propuls&eacute; par l'IA</div>
-      <h1>Ton Programme Fitness <em>Personnalis&eacute;</em> en 2 Minutes</h1>
-      <p>Notre IA analyse ton profil et g&eacute;n&egrave;re un programme nutrition + training 100% adapt&eacute; &agrave; tes objectifs. Gratuit et instantan&eacute;.</p>
+      <div class="hero-badge">Programme Exclusif par IA</div>
+      <h1>Ta Transformation<br>Commence <em>Ici</em></h1>
+      <p>Programme nutrition + training 100% personnalis&eacute; par IA. Con&ccedil;u pour ceux qui veulent des r&eacute;sultats, pas des excuses.</p>
       <a href="survey.html" class="cta-btn">Cr&eacute;er Mon Programme &rarr;</a>
       <span class="cta-sub">Gratuit &bull; 2 min &bull; Aucune carte requise</span>
     </section>
 
-    <!-- FEATURES -->
-    <section class="features">
-      <h2 class="features-title">Pourquoi GREEN 55 ?</h2>
-
-      <div class="feature-card">
-        <div class="feature-icon">&#129504;</div>
-        <div>
-          <h3>Intelligence Artificielle</h3>
-          <p>Notre algorithme analyse 15+ param&egrave;tres pour cr&eacute;er un programme unique &agrave; ton profil.</p>
-        </div>
+    <!-- TRUST BAR -->
+    <div class="trust-bar fade-up">
+      <div class="trust-item">
+        <div class="trust-num">2.4K+</div>
+        <div class="trust-label">Programmes</div>
       </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">&#127860;</div>
-        <div>
-          <h3>Nutrition Sur-Mesure</h3>
-          <p>Macros, calories et plans repas calcul&eacute;s selon tes pr&eacute;f&eacute;rences alimentaires.</p>
-        </div>
+      <div class="trust-item">
+        <div class="trust-num">4.9/5</div>
+        <div class="trust-label">Satisfaction</div>
       </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">&#128170;</div>
-        <div>
-          <h3>Training Adapt&eacute;</h3>
-          <p>Salle ou maison, d&eacute;butant ou confirm&eacute;, ton programme s'adapte &agrave; toi.</p>
-        </div>
+      <div class="trust-item">
+        <div class="trust-num">93%</div>
+        <div class="trust-label">R&eacute;sultats 30j</div>
       </div>
-
-      <div class="feature-card">
-        <div class="feature-icon">&#128200;</div>
-        <div>
-          <h3>R&eacute;sultats Mesurables</h3>
-          <p>Suivi de progression et ajustements pour garantir tes r&eacute;sultats.</p>
-        </div>
-      </div>
-    </section>
+    </div>
 
     <!-- HOW IT WORKS -->
-    <section class="how">
-      <h2 class="how-title">Comment &ccedil;a marche ?</h2>
+    <section class="how-section">
+      <div class="section-label fade-up">Comment &ccedil;a marche</div>
+      <h2 class="section-heading fade-up">3 &eacute;tapes vers ta transformation</h2>
 
-      <div class="step">
-        <div class="step-num">1</div>
+      <div class="step-card fade-up">
+        <div class="step-num">01</div>
         <div>
           <h3>Remplis le questionnaire</h3>
           <p>5 &eacute;tapes rapides pour cerner ton profil, tes objectifs et ton mode de vie.</p>
         </div>
       </div>
 
-      <div class="step">
-        <div class="step-num">2</div>
+      <div class="step-card fade-up">
+        <div class="step-num">02</div>
         <div>
           <h3>L'IA g&eacute;n&egrave;re ton programme</h3>
-          <p>En quelques secondes, notre algorithme cr&eacute;e un plan 100% personnalis&eacute;.</p>
+          <p>Notre algorithme analyse 15+ param&egrave;tres et cr&eacute;e un plan 100% unique pour toi.</p>
         </div>
       </div>
 
-      <div class="step">
-        <div class="step-num">3</div>
+      <div class="step-card fade-up">
+        <div class="step-num">03</div>
         <div>
-          <h3>Re&ccedil;ois ton aper&ccedil;u gratuit</h3>
-          <p>D&eacute;couvre tes macros, ton analyse et un aper&ccedil;u 7 jours offert.</p>
+          <h3>Re&ccedil;ois tes r&eacute;sultats</h3>
+          <p>D&eacute;couvre tes macros, ton analyse personnalis&eacute;e et ton aper&ccedil;u programme offert.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURES -->
+    <section class="features-section">
+      <div class="section-label fade-up">Ce qui te d&eacute;marque</div>
+      <h2 class="section-heading fade-up">Pourquoi JIMSEUH ?</h2>
+
+      <div class="feature-card fade-up">
+        <div class="feature-icon">&#129504;</div>
+        <div>
+          <h3>Intelligence Artificielle Avanc&eacute;e</h3>
+          <p>Un algorithme qui analyse ton profil complet pour cr&eacute;er un programme unique. Pas de template, que du sur-mesure.</p>
+        </div>
+      </div>
+
+      <div class="feature-card fade-up">
+        <div class="feature-icon">&#127860;</div>
+        <div>
+          <h3>Nutrition Sur-Mesure</h3>
+          <p>Macros, calories et plans repas calcul&eacute;s selon tes pr&eacute;f&eacute;rences alimentaires et ton objectif physique.</p>
+        </div>
+      </div>
+
+      <div class="feature-card fade-up">
+        <div class="feature-icon">&#128170;</div>
+        <div>
+          <h3>Training Adapt&eacute;</h3>
+          <p>Salle ou maison, d&eacute;butant ou confirm&eacute; &mdash; chaque s&eacute;ance est calibr&eacute;e pour ton niveau et tes contraintes.</p>
+        </div>
+      </div>
+
+      <div class="feature-card fade-up">
+        <div class="feature-icon">&#128200;</div>
+        <div>
+          <h3>R&eacute;sultats Mesurables</h3>
+          <p>Suivi de progression, ajustements automatiques et accompagnement pour garantir ta transformation.</p>
         </div>
       </div>
     </section>
 
     <!-- SOCIAL PROOF -->
-    <section class="social-proof">
-      <h2 class="social-title">Ils nous font confiance</h2>
+    <section class="proof-section">
+      <div class="section-label fade-up">Ils l'ont fait</div>
+      <h2 class="section-heading fade-up">Transformations r&eacute;elles</h2>
 
-      <div class="stats">
-        <div class="stat">
+      <div class="stats-grid fade-up">
+        <div class="stat-card">
           <div class="stat-num">2.4K+</div>
-          <div class="stat-label">Programmes g&eacute;n&eacute;r&eacute;s</div>
+          <div class="stat-label">Programmes</div>
         </div>
-        <div class="stat">
-          <div class="stat-num">4.8/5</div>
+        <div class="stat-card">
+          <div class="stat-num">4.9/5</div>
           <div class="stat-label">Satisfaction</div>
         </div>
-        <div class="stat">
+        <div class="stat-card">
           <div class="stat-num">93%</div>
-          <div class="stat-label">R&eacute;sultats &agrave; 30j</div>
+          <div class="stat-label">R&eacute;sultats</div>
         </div>
       </div>
 
-      <div class="testimonial">
+      <div class="testimonial-card fade-up">
         <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>&laquo; J'ai test&eacute; plein d'apps, mais GREEN 55 est le seul programme qui a vraiment compris mon profil. En 4 semaines, -3kg de gras tout en gagnant en force. &raquo;</p>
-        <div class="testimonial-author">Mehdi K. &mdash; Paris, 28 ans</div>
+        <p class="testimonial-text">&laquo; J'ai test&eacute; plein de programmes, mais JIMSEUH est le seul qui a vraiment compris mon profil. En 4 semaines, -3kg de gras tout en gagnant en force. &raquo;</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">MK</div>
+          <div>
+            <div class="author-name">Mehdi K.</div>
+            <div class="author-detail">Paris &bull; 28 ans &bull; S&egrave;che</div>
+          </div>
+        </div>
+        <div class="testimonial-result">-3 kg de gras en 4 semaines</div>
       </div>
 
-      <div class="testimonial">
+      <div class="testimonial-card fade-up">
         <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>&laquo; Le programme nutrition est incroyable. Des recettes simples adapt&eacute;es &agrave; mon r&eacute;gime halal. Je recommande &agrave; 100%. &raquo;</p>
-        <div class="testimonial-author">Amina B. &mdash; Lyon, 24 ans</div>
+        <p class="testimonial-text">&laquo; Le programme nutrition est incroyable. Des recettes simples adapt&eacute;es &agrave; mon r&eacute;gime. Je recommande &agrave; 100%. &raquo;</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AB</div>
+          <div>
+            <div class="author-name">Amina B.</div>
+            <div class="author-detail">Lyon &bull; 24 ans &bull; Recomposition</div>
+          </div>
+        </div>
+        <div class="testimonial-result">Recomposition r&eacute;ussie</div>
       </div>
 
-      <div class="testimonial">
+      <div class="testimonial-card fade-up">
         <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p>&laquo; D&eacute;butante totale, j'avais peur de me blesser. Le programme maison &eacute;tait parfait pour commencer en douceur. &raquo;</p>
-        <div class="testimonial-author">Clara M. &mdash; Bordeaux, 32 ans</div>
+        <p class="testimonial-text">&laquo; D&eacute;butante totale, j'avais peur. Le programme maison &eacute;tait parfait pour commencer en douceur et les r&eacute;sultats sont l&agrave;. &raquo;</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">CM</div>
+          <div>
+            <div class="author-name">Clara M.</div>
+            <div class="author-detail">Bordeaux &bull; 32 ans &bull; Prise de masse</div>
+          </div>
+        </div>
+        <div class="testimonial-result">+2.5 kg de muscle en 30j</div>
       </div>
     </section>
 
     <!-- FINAL CTA -->
-    <section class="final-cta">
-      <h2>Pr&ecirc;t &agrave; transformer ton physique ?</h2>
-      <p>Rejoins les 2 400+ personnes qui ont d&eacute;j&agrave; g&eacute;n&eacute;r&eacute; leur programme avec GREEN 55.</p>
-      <a href="survey.html" class="cta-btn">Commencer Maintenant &rarr;</a>
-      <span class="cta-sub">100% gratuit &bull; R&eacute;sultats en 2 minutes</span>
+    <section class="final-cta fade-up">
+      <h2>Pr&ecirc;t &agrave; passer au <em>niveau sup&eacute;rieur</em> ?</h2>
+      <p>Rejoins les 2 400+ personnes qui transforment leur physique avec JIMSEUH. R&eacute;sultats en 2 minutes.</p>
+      <a href="survey.html" class="cta-btn">Commencer Ma Transformation &rarr;</a>
+      <span class="cta-sub">100% gratuit &bull; Sans engagement</span>
     </section>
 
     <!-- FOOTER -->
     <footer>
-      <p>&copy; 2026 GREEN 55 &mdash; Tous droits r&eacute;serv&eacute;s.</p>
+      <div class="footer-logo">JIMSEUH</div>
+      <p>&copy; 2026 JIMSEUH &mdash; Tous droits r&eacute;serv&eacute;s.</p>
+      <p style="margin-top:8px;"><a href="#">Mentions l&eacute;gales</a> &bull; <a href="#">CGV</a> &bull; <a href="#">Contact</a></p>
     </footer>
   </div>
+
+  <!-- STICKY MOBILE CTA -->
+  <div class="sticky-cta" id="stickyCta">
+    <div class="sticky-inner">
+      <a href="survey.html" class="cta-btn">Cr&eacute;er Mon Programme &rarr;</a>
+    </div>
+  </div>
+
+  <script>
+    // Scroll animations
+    (function() {
+      var fadeEls = document.querySelectorAll('.fade-up');
+      var observer = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+          }
+        });
+      }, { threshold: 0.15 });
+
+      fadeEls.forEach(function(el) {
+        observer.observe(el);
+      });
+
+      // Sticky CTA show/hide
+      var sticky = document.getElementById('stickyCta');
+      var heroHeight = document.querySelector('.hero').offsetHeight;
+      window.addEventListener('scroll', function() {
+        if (window.scrollY > heroHeight) {
+          sticky.style.display = 'block';
+        } else {
+          sticky.style.display = 'none';
+        }
+      });
+    })();
+  </script>
 
 </body>
 </html>
